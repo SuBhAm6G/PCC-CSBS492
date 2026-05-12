@@ -38,7 +38,7 @@ int main(){
         s[i].display();
         cout << endl;
     }
-    
+    delete[] s;
 
     return 0;
 }
