@@ -3,16 +3,23 @@
 using namespace std;
 
 class Queue{
-    	int arr[5];
+    	int *arr;
+    	int capacity;
     	int front, rear;
 
 public:
-    	Queue(){
+    	Queue(int size){
+            capacity = size;
+            arr = new int[capacity];
         	front = rear = -1;
     	}
 
+        ~Queue(){
+            delete[] arr;
+        }
+
     	void enqueue(int x){
-        	if(rear == 4){
+        	if(rear == capacity - 1){
             	cout << "Queue Overflow" << endl;
             	return;
         	}
@@ -58,7 +65,16 @@ public:
 };
 
 int main(){
-    	Queue q;
+        int size;
+        cout << "Enter queue size: ";
+        cin >> size;
+
+        if(size <= 0){
+            cout << "Invalid queue size" << endl;
+            return 0;
+        }
+
+    	Queue q(size);
     	int c;
 
     	while(1){
